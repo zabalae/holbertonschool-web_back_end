@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-'''Duck-typed annotations'''
+'''
+Duck-typed annotations
+'''
 from typing import Union, Any, Sequence
 
 
