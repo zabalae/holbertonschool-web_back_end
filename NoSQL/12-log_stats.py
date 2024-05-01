@@ -13,7 +13,6 @@ if __name__ == "__main__":
     print(f'{collection.estimated_document_count()} logs')
 
     print('Methods:')
-
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
         methods_count = collection.count_documents({'method': method})
         print(f"\tmethod: {method}: {methods_count}")
