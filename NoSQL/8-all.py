@@ -7,8 +7,8 @@ import pymongo
 
 def list_all(mongo_collection):
     '''list_all function'''
-    all_docs = mongo_collection.find()
-    for doc in all_docs:
+    all_docs = []
+    for doc in mongo_collection.find():
         all_docs.append(doc)
 
     return all_docs
