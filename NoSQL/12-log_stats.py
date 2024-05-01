@@ -11,20 +11,21 @@ METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 def log_stats():
     '''logs stats about Nginx logs'''
     client = MongoClient('mongodb://localhost:27017/')
-    db = client['logs']
-    collection = db['nginx']
-
+    collection = client.logs.nginx
     total_logs = collection.count_documents({})
 
-    method_counts = {method: collection.count_documents({"method": method}) for method in METHODS}
-
-    status_check_count = collection.count_documents({"method": "GET", "path": "/status"})
-
-    print(f"{total_logs} logs")
-    print("Methods:")
+    print(f'{total_logs} logs')
+    print('Methods:')
     for method in METHODS:
-        print(f"    method {method}: {method_counts[method]}")
-    print(f"{status_check_count} status check")
+        methods_count = collection.count_documents({"method": method})
+        print(f'\tmethod: {method}: {methods_count}')
+
+    status_check = collection.count_documents(
+        {"method": "GET", "path": "/status"}
+        )
+
+    print(f'{status_check} status check')
+
 
 if __name__ == "__main__":
     log_stats()
