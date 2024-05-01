@@ -10,17 +10,13 @@ if __name__ == "__main__":
     client = MongoClient('mongodb://localhost:27017/')
     collection = client.logs.nginx
 
-    total_logs = collection.estimated_document_count()
-
-    print(f'{total_logs} logs')
-
-    METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    print(f'{collection.estimated_document_count()} logs')
 
     print('Methods:')
 
-    for method in METHODS:
+    for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
         methods_count = collection.count_documents({'method': method})
-        print(f'\tmethod: {method}: {methods_count}')
+        print(f"\tmethod: {method}: {methods_count}")
 
     status_check = collection.count_documents(
         {'method': 'GET', 'path': "/status"})
