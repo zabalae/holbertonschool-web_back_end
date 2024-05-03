@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     print(f"{status_check} status check")
 
-    ips = nginx_collection.aggregate([
+    ips = collection.aggregate([
         {"$group": {"_id": "$ip", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit": 10},
