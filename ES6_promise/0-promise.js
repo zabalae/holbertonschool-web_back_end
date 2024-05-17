@@ -1,4 +1,4 @@
 //Return a promise
-function getResponseFromAPI() {
-  return new Promise(() => { console.log(''); });
+export default function getResponseFromAPI() {
+  return new Promise(() => {});
 }
