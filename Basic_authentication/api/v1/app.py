@@ -44,7 +44,8 @@ def forbidden_error(error) -> str:
 
 @app.before_request
 def before_request() -> str:
-    """ All before execute main request """
+    """ All before execute main request
+    """
     exclude_paths = ['/api/v1/status/',
                      '/api/v1/unauthorized/',
                      '/api/v1/forbidden/']
