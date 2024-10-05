@@ -7,7 +7,7 @@ from typing import List, TypeVar
 class Auth():
     """Class that manages api authentication"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """ Returns False
+        """Returns False
         """
         if path is None or excluded_paths is None or len(excluded_paths) == 0:
             return True
@@ -35,7 +35,8 @@ class Auth():
 
 
     def authorization_header(self, request=None) -> str:
-        """header check"""
+        """header check
+        """
         if request is None:
             return None
 
@@ -43,6 +44,7 @@ class Auth():
 
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """current user"""
+        """current user
+        """
         return None
  
