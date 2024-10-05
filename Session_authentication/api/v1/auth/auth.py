@@ -6,7 +6,8 @@ from os import getenv
 
 
 class Auth():
-    """Class that manages api authentication"""
+    """Class that manages api authentication
+    """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Returns False
         """
