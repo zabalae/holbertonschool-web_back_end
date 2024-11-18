@@ -1,19 +1,20 @@
-const calculateNumber = (type, a, b) => {
-    const numA = Math.round(a);
-    const numB = Math.round(b);
-  
-    if (type === 'SUBTRACT') {
-      return numA - numB;
-    }
-  
-    if (type === 'DIVIDE') {
-      if (bRound === 0) {
-        return 'Error';
+module.exports = function calculateNumber(type, a, b) {
+  const numA = Number(a);
+  const numB = Number(b);
+
+  if (Number.isNaN(numA) || Number.isNaN(numB))
+  throw TypeError;
+
+  if (type === 'SUM') {
+    return (Math.round(numA) + Math.round(numB));
+  } else if (type === 'SUBTRACT') {
+    return (Math.round(numA) - Math.round(numB));
+  } else if (type === 'DIVIDE') {
+      if (Math.round(numB) === 0) {
+        return ('Error');
       }
-      return numA / numB;
-    }
-  
-    return numA + numB;
-  };
-  
-  module.exports = calculateNumber;
+      return (Math.round(numA) / Math.round(numB));
+  } else {
+    throw TypeError;
+  }
+}
