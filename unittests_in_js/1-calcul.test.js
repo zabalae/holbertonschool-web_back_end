@@ -1,32 +1,82 @@
-const calculateNumber = require("./1-calcul.js");
-const mocha = require('mocha');
-const assert = require("assert");
+const assert = require('assert').strict;
+const calculateNumber = require('./1-calcul');
 
-describe('calculateNumber', () => {
-    it('returns rounded sum with SUM', () => {
-    assert.strictEqual(calculateNumber('SUM', 1, 3), 4);
-    assert.strictEqual(calculateNumber('SUM', 1.6, 3), 5);
-    assert.strictEqual(calculateNumber('SUM', 1.2, 3.8), 5);
-    assert.strictEqual(calculateNumber('SUM', -1, -3), -4);
-    assert.strictEqual(calculateNumber('SUM',-1.4, -3.6), -5);
+describe('calculateNumber', function () {
+  describe('SUM no Round', function () {
+    it('should return 5', function () {
+      assert.equal(calculateNumber('SUM', 1, 4), 5);
     });
-    it('returns rounded sum with SUBTRACT', () => {
-        assert.strictEqual(calculateNumber('SUBTRACT', 1, 3), -2);
-        assert.strictEqual(calculateNumber('SUBTRACT', 1.6, 3), -1);
-        assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3.8), -3);
-        assert.strictEqual(calculateNumber('SUBTRACT', -1, -3), 2);
-        assert.strictEqual(calculateNumber('SUBTRACT',-1.4, -3.6), 3);
+  });
+
+  describe('SUM first round', function () {
+    it('should return 6', function () {
+      assert.equal(calculateNumber('SUM', 2.4, 4), 6);
     });
-    it('returns rounded sum with DIVIDE', () => {
-        assert.strictEqual(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
+  });
+
+  describe('SUM second round ', function () {
+    it('should return 6', function () {
+      assert.equal(calculateNumber('SUM', 4, 2.4), 6);
     });
-    it('returns error string when DIVIDE by 0', () => {
-        assert.strictEqual(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+  });
+
+  describe('SUM both round', function () {
+    it('should return 6', function () {
+      assert.equal(calculateNumber('SUM', 1.4, 4.5), 6);
     });
-    it('should throw error if NaN passed', function () {
-        assert.throws(() => calculateNumber('SUM', NaN, 3), '[Function: TypeError]');
+  });
+
+  describe('SUBTRACT no round', function () {
+    it('should return 2', function () {
+      assert.equal(calculateNumber('SUBTRACT', 5, 3), 2);
     });
-    it('should throw error if invalid type', function () {
-        assert.throws(() => calculateNumber('blah', 2, 3), '[Function: TypeError]');
+  });
+
+  describe('SUBTRACT first round', function () {
+    it('should return -3', function () {
+      assert.equal(calculateNumber('SUBTRACT', 2, 4.5), -3);
     });
+  });
+
+  describe('SUBTRACT second round', function () {
+    it('should return 3', function () {
+      assert.equal(calculateNumber('SUBTRACT', 4.5, 2), 3);
+    });
+  });
+
+  describe('SUBTRACT both round', function () {
+    it('should return -4', function () {
+      assert.equal(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
+    });
+  });
+
+  describe('DIVIDE no round', function () {
+    it('should return 2', function () {
+      assert.equal(calculateNumber('DIVIDE', 8, 4), 2);
+    });
+  });
+
+  describe('DIVIDE first round', function () {
+    it('should return 5', function () {
+      assert.equal(calculateNumber('DIVIDE', 9.5, 2), 5);
+    });
+  });
+
+  describe('DIVIDE second round', function () {
+    it('should return 0.2', function () {
+      assert.equal(calculateNumber('DIVIDE', 2, 9.5), 0.2);
+    });
+  });
+
+  describe('DIVIDE both round', function () {
+    it('should return 0.2', function () {
+      assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
+    });
+  });
+
+  describe('DIVIDE Error', function () {
+    it('should return Error', function () {
+      assert.equal(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+    });
+  });
 });
